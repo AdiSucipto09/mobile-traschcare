@@ -130,7 +130,7 @@ class _HalamanPage extends State<HalamanPage> {
                         children: [
                           Positioned(
                             top: 10,
-                            right: 20,
+                            right: 10,
                             child: Container(
                               height: 50,
                               width: 50,
@@ -157,14 +157,14 @@ class _HalamanPage extends State<HalamanPage> {
                             ),
                           ),
                           Positioned(
-                            left: 50,
-                            right: 50,
-                            top: 50,
-                            bottom: 50,
+                            left: 60,
+                            right: 60,
+                            top: 60,
+                            bottom: 60,
                             child: Image.asset(_plantList[index].imageURL),
                           ),
                           Positioned(
-                            bottom: 15,
+                            bottom: 20,
                             left: 20,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,14 +173,14 @@ class _HalamanPage extends State<HalamanPage> {
                                   _plantList[index].category,
                                   style: const TextStyle(
                                     color: Colors.white70,
-                                    fontSize: 16,
+                                    fontSize: 13,
                                   ),
                                 ),
                                 Text(
                                   _plantList[index].plantName,
                                   style: const TextStyle(
                                     color: Colors.white70,
-                                    fontSize: 15,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -188,8 +188,8 @@ class _HalamanPage extends State<HalamanPage> {
                             ),
                           ),
                           Positioned(
-                            bottom: 15,
-                            right: 20,
+                            top: 15,
+                            left: 20,
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 2),
