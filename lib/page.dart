@@ -8,17 +8,16 @@ class PageSatu extends StatefulWidget {
   const PageSatu({Key? key}) : super(key: key);
 
   @override
-  State<PageSatu> createState() => _PageSatu();
+  State<PageSatu> createState() => _PageSatuState();
 }
 
-class _PageSatu extends State<PageSatu> {
+class _PageSatuState extends State<PageSatu> {
   final controller = PageController();
   bool isLastPage = false;
 
   @override
   void dispose() {
     controller.dispose();
-
     super.dispose();
   }
 
@@ -52,98 +51,95 @@ class _PageSatu extends State<PageSatu> {
               padding: const EdgeInsets.symmetric(),
               child: Text(
                 subtitle,
-                style: const TextStyle(color: Colors.black),
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black),
               ),
             )
           ],
         ),
       );
-  
-  @override 
+
+  @override
   Widget build(BuildContext context) => Scaffold(
-    body: Container(
-      padding: const EdgeInsets.only(bottom: 80),
-      child: PageView(
-        controller: controller,
-        onPageChanged: (index) {
-          setState(() => isLastPage = index ==2);
-            
-        },
-        children: [
-          buildPage(
-            color: Colors.white,
-            urlImage: 'images/hal2.png',
-            title: 'EDUKASI',
-            subtitle:
-            ' Sebagai media edukasi untuk'
-            'Pengetahuan masyarakat terhadap sampah'
-            ,
-          ),
-          buildPage(
-            color: Colors.white,
-            urlImage: 'images/hal1.png',
-            title: '3R',
-            subtitle:
-            ' reduce,recycle,reuse',
-          ),
-          buildPage(
-            color: Colors.white,
-            urlImage: 'images/banksampah.png',
-            title: 'Bank Sampah',
-            subtitle:
-            'Mengubah sampah menjadi uang',
-          ),
-        ],
-      ),
-    ),
-    bottomSheet: isLastPage
-      ? TextButton(child: const Text(
-        'Get Started',
-        style: TextStyle(fontSize: 24),
-      ),
-      onPressed: () async {
-        final prefs = await SharedPreferences.getInstance();
-        prefs.setBool('showHome', true);
-        
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => SignIn()),
-        );
-      },
-      )
-    :Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      height: 80,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          TextButton(
-             child: const Text('SKIP'),
-             onPressed: () => controller.jumpToPage(2),
-             ),
-             Center(
-                child: SmoothPageIndicator(
-                  controller: controller,
-                  count: 3,
-                  effect: WormEffect(
-                    spacing: 16,
-                    dotColor: Colors.black26,
-                    activeDotColor: Colors.teal.shade700
-                  ),
-                  onDotClicked: (index) => controller.animateToPage(
-                    index,
-                     duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeIn),
-                   ),
-             ),
-              TextButton(
-             child: const Text('NEXT'),
-             onPressed: () => controller.nextPage(
-              duration: const Duration(microseconds: 500,), 
-              curve: Curves.easeOut,
+        body: Container(
+          padding: const EdgeInsets.only(bottom: 80),
+          child: PageView(
+            controller: controller,
+            onPageChanged: (index) {
+              setState(() => isLastPage = index == 2);
+            },
+            children: [
+              buildPage(
+                color: Colors.white,
+                urlImage: 'images/hal2.png',
+                title: 'EDUKASI',
+                subtitle:
+                    ' Sebagai media edukasi untuk pengetahuan masyarakat terhadap sampah',
               ),
+              buildPage(
+                color: Colors.white,
+                urlImage: 'images/hal1.png',
+                title: '3R',
+                subtitle: ' reduce,recycle,reuse',
               ),
-        ],
-      ),
-    ),
-  );
+              buildPage(
+                color: Colors.white,
+                urlImage: 'images/banksampah.png',
+                title: 'Bank Sampah',
+                subtitle: 'Mengubah sampah menjadi uang',
+              ),
+            ],
+          ),
+        ),
+        bottomSheet: isLastPage
+            ? TextButton(
+                child: const Text(
+                  'Get Started',
+                  style: TextStyle(fontSize: 24),
+                ),
+                onPressed: () async {
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setBool('showHome', true);
+
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => SignIn()),
+                  );
+                },
+              )
+            : Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                height: 80,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      child: const Text('SKIP'),
+                      onPressed: () => controller.jumpToPage(2),
+                    ),
+                    Center(
+                      child: SmoothPageIndicator(
+                        controller: controller,
+                        count: 3,
+                        effect: WormEffect(
+                            spacing: 16,
+                            dotColor: Colors.black26,
+                            activeDotColor: Colors.teal.shade700),
+                        onDotClicked: (index) => controller.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      child: const Text('NEXT'),
+                      onPressed: () => controller.nextPage(
+                        duration: const Duration(microseconds: 500),
+                        curve: Curves.easeOut,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+      );
 }

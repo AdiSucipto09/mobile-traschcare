@@ -3,6 +3,7 @@ import 'package:trashcare/camera.dart';
 import 'package:trashcare/constants.dart';
 import 'package:trashcare/datasampah.dart';
 import 'package:trashcare/chatbot.dart';
+import 'package:trashcare/edit_status.dart';
 import 'package:trashcare/halaman_home.dart';
 import 'package:trashcare/profile_page.dart';
 import 'package:trashcare/splash.dart';
@@ -23,12 +24,13 @@ class _RootPage extends State<RootPage> {
     chatbot(),
     DataSampah(),
     ProfilePage(),
+    EditStatus(),
    
   ];
 
   List<IconData> iconList = [
     Icons.home,
-    Icons.recycling,
+    Icons.mark_unread_chat_alt_outlined,
     Icons.dataset,
     Icons.person
   ];
@@ -51,7 +53,7 @@ class _RootPage extends State<RootPage> {
               fontWeight: FontWeight.w500,
               fontSize: 24
             ),),
-            Icon(Icons.notifications, color: Constants.blackColor, size: 30.0,)
+            Icon(Icons.table_rows_sharp, color: Constants.blackColor, size: 30.0,)
 
           ],
         ),

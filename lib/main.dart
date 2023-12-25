@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:trashcare/Page.dart';
 import 'package:trashcare/camera.dart';
+import 'package:trashcare/edit_profile.dart';
+import 'package:trashcare/edit_status.dart';
 import 'package:trashcare/halaman_home.dart';
 import 'package:trashcare/rootpage.dart';
 import 'package:trashcare/splash.dart';

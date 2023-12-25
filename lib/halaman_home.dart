@@ -21,12 +21,6 @@ class _HalamanPage extends State<HalamanPage> {
     List<Plant> _plantList = Plant.plantList;
 
     List<String> _plantTypes =[
-      'Sampah Plastik',
-      'Sampah Botol',
-      'Sampah Kertas',
-      'Sampah Sterofoam',
-      'Sampah Anorganik',
-      'Sampah Kardus',
     ];
     
     bool toggleIsFavorated(bool isFavorited) {
@@ -38,43 +32,71 @@ class _HalamanPage extends State<HalamanPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.only(top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                  ),
-                  width: size.width * .9,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.search,
-                        color: Colors.black54.withOpacity(.6),
-                      ),
-                      const Expanded(
-                          child: TextField(
-                        showCursor: false,
-                        decoration: InputDecoration(
-                          hintText: 'Search',
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                        ),
-                      )),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Constants.primaryColor.withOpacity(.1),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                )
-              ],
-            ),
+       Container(
+  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+  height: 150, // Sesuaikan dengan kebutuhan Anda
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(20),
+    gradient: LinearGradient(
+      colors: [
+        Color.fromRGBO(123, 158, 139, 0.86),
+        Constants.primaryColor.withOpacity(0.8),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Constants.primaryColor.withOpacity(0.4),
+        spreadRadius: 2,
+        blurRadius: 10,
+        offset: const Offset(0, 3),
+      ),
+    ],
+  ),
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Center(
+        child: Text(
+          'Selamat Datang!',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 28.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            shadows: [
+              Shadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 2,
+                offset: const Offset(1, 2),
+              ),
+            ],
           ),
+        ),
+      ),
+      const SizedBox(height: 10),
+      Center(
+        child: Text(
+          'Di Aplikasi TrashCare!',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+            shadows: [
+              Shadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 2,
+                offset: const Offset(1, 2),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             height: 50.0,

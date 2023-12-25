@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class chatbot extends StatelessWidget {
   const chatbot({super.key});
@@ -38,30 +38,36 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  void _handleSubmitted(String text) {
+  Future<void> _handleSubmitted(String text) async {
     _textController.clear();
     ChatMessage message = ChatMessage(text: text, isBot: false);
     setState(() {
       _messages.insert(0, message);
     });
-    // Find a response based on user input
-    String response = getBotResponse(text);
-    ChatMessage botMessage = ChatMessage(text: response, isBot: true);
-    setState(() {
-      _messages.insert(0, botMessage);
-    });
-  }
 
-  String getBotResponse(String userMessage) {
-    // Your logic to get a response based on user input from loaded JSON data
-    // For example, let's assume the bot_responses.json contains a list of responses
-    // based on keywords.
-    for (var entry in _botResponses) {
-      if (entry.containsKey(userMessage.toLowerCase())) {
-        return entry[userMessage.toLowerCase()];
+    // Make an HTTP request to the Flask server
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:5000/api/chatbot'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'message': text}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        String botResponse = data['message'];
+        ChatMessage botMessage = ChatMessage(text: botResponse, isBot: true);
+        setState(() {
+          _messages.insert(0, botMessage);
+        });
+      } else {
+        // Handle error
+        print('Failed to get response from Flask API');
       }
+    } catch (e) {
+      // Handle exception
+      print('Exception: $e');
     }
-    return "Maaf, saya tidak mengerti.";
   }
 
   Widget _buildTextComposer() {
@@ -75,8 +81,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration:
-                    InputDecoration.collapsed(hintText: 'Ketik pesan Anda'),
+                decoration: InputDecoration.collapsed(hintText: 'Type your message'),
               ),
             ),
             IconButton(
@@ -90,6 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +164,7 @@ class ChatMessage extends StatelessWidget {
             ),
           ),
         ],
-    ),
-  );
+      ),
+    );
   }
 }

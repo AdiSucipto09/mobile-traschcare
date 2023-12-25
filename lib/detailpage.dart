@@ -119,91 +119,93 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: const EdgeInsets.only(top: 80, left: 30, right: 30),
-              height: size.height * .5,
-              width: size.width,
-              decoration: BoxDecoration(
-                color: Constants.primaryColor.withOpacity(.4),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  topLeft: Radius.circular(30),
-                ),
-              ),
-              child: Column(
+         Positioned(
+  bottom: 0,
+  left: 0,
+  right: 0,
+  child: SingleChildScrollView(
+    child: Container(
+      padding: const EdgeInsets.only(top: 80, left: 30, right: 30, bottom: 30),
+      decoration: BoxDecoration(
+        color: Constants.primaryColor.withOpacity(.4),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            _plantList[widget.plantId].plantName,
-                            style: TextStyle(
-                              color: Constants.primaryColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30.0,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            r'Rp' + _plantList[widget.plantId].price.toString(),
-                            style: TextStyle(
-                              color: Constants.blackColor,
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            r'/' + _plantList[widget.plantId].kilogram.toString(),
-                            style: TextStyle(
-                              color: Constants.blackColor,
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.volunteer_activism_rounded,
-                            size: 30.0,
-                            color: Constants.primaryColor,
-                          ),
-                        ],
-                      ),
-                    ],
+                  Text(
+                    _plantList[widget.plantId].plantName,
+                    style: TextStyle(
+                      color: Constants.primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                    ),
                   ),
                   const SizedBox(
-                    height: 5.0,
+                    height: 10,
                   ),
-                  Expanded(
-                    child: Text(
-                      _plantList[widget.plantId].decription,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        height: 1.5,
-                        fontSize: 18,
-                        color: Constants.blackColor.withOpacity(.7),
-                      ),
+                  Text(
+                    r'Rp' + _plantList[widget.plantId].price.toString(),
+                    style: TextStyle(
+                      color: Constants.blackColor,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    r'/' + _plantList[widget.plantId].kilogram.toString(),
+                    style: TextStyle(
+                      color: Constants.blackColor,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                 ],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.volunteer_activism_rounded,
+                    size: 30.0,
+                    color: Constants.primaryColor,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5.0,
+          ),
+          SizedBox(
+            height: size.height * 0.3, // Sesuaikan tinggi sesuai kebutuhan
+            child: SingleChildScrollView(
+              child: Text(
+                _plantList[widget.plantId].decription,
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  height: 1.5,
+                  fontSize: 18,
+                  color: Constants.blackColor.withOpacity(.7),
+                ),
               ),
             ),
           ),
         ],
       ),
+    ),
+  ),
+),
+        ]),
       floatingActionButton: SizedBox(
         width: size.width * .9,
         height: 50,
@@ -225,7 +227,7 @@ class _DetailPageState extends State<DetailPage> {
               )),
               decoration: BoxDecoration(
                   color: _plantList[widget.plantId].isSelected == true ? Constants.primaryColor.withOpacity(.5) : Colors.white,
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(30),
                   boxShadow: [
                     BoxShadow(
                       offset: const Offset(0, 1),
@@ -238,6 +240,15 @@ class _DetailPageState extends State<DetailPage> {
               width: 20,
             ),
             Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DataSampah(), // Ganti dengan nama halaman DataSampah Anda
+                    ),
+                  );
+                },
               child: Container(
                 decoration: BoxDecoration(
                     color: Constants.primaryColor,
@@ -259,6 +270,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ),
               ),
+            ),
             ),
           ],
         ),
