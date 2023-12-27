@@ -40,14 +40,14 @@ class _HalamanPage extends State<HalamanPage> {
     gradient: LinearGradient(
       colors: [
         Color.fromRGBO(123, 158, 139, 0.86),
-        Constants.primaryColor.withOpacity(0.8),
+        Color(0xFF395144).withOpacity(0.8),
       ],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     ),
     boxShadow: [
       BoxShadow(
-        color: Constants.primaryColor.withOpacity(0.4),
+        color: Color(0xFF395144).withOpacity(0.4),
         spreadRadius: 2,
         blurRadius: 10,
         offset: const Offset(0, 3),
@@ -121,7 +121,7 @@ class _HalamanPage extends State<HalamanPage> {
                               ? FontWeight.bold
                               : FontWeight.w300,
                           color: selectedIndex == index
-                              ? Constants.primaryColor
+                              ? Color(0xFF395144)
                               : Constants.blackColor,
                         ),
                       ),
@@ -168,7 +168,7 @@ class _HalamanPage extends State<HalamanPage> {
                                   _plantList[index].isFavorated == true
                                       ? Icons.favorite
                                       : Icons.favorite_border,
-                                  color: Constants.primaryColor,
+                                  color: Color(0xFF395144),
                                 ),
                                 iconSize: 30,
                               ),
@@ -222,7 +222,7 @@ class _HalamanPage extends State<HalamanPage> {
                               child: Text(
                                 r'Rp' + _plantList[index].price.toString(),
                                 style: TextStyle(
-                                    color: Constants.primaryColor,
+                                    color: Color(0xFF395144),
                                     fontSize: 16),
                               ),
                             ),
@@ -230,7 +230,7 @@ class _HalamanPage extends State<HalamanPage> {
                         ],
                       ),
                       decoration: BoxDecoration(
-                        color: Constants.primaryColor.withOpacity(.8),
+                        color: Color(0xFF395144).withOpacity(.8),
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),

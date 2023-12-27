@@ -53,7 +53,7 @@ class SignIn extends StatelessWidget {
               child: Container(
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: Constants.primaryColor,
+                  color: Color(0xFF395144),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding:
@@ -93,7 +93,7 @@ class SignIn extends StatelessWidget {
                     TextSpan(
                         text: "Reset Here",
                         style: TextStyle(
-                          color: Constants.primaryColor,
+                          color: Color(0xFF395144),
                           fontWeight: FontWeight.bold
                         )),
                   ]),
@@ -163,7 +163,7 @@ class SignIn extends StatelessWidget {
                     TextSpan(
                         text: "Register",
                         style: TextStyle(
-                          color: Constants.primaryColor,
+                          color: Color(0xFF395144),
                           fontWeight: FontWeight.bold
                         )),
                   ]),

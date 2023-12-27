@@ -45,11 +45,11 @@ class _DetailPageState extends State<DetailPage> {
                     width: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Constants.primaryColor.withOpacity(.15),
+                      color: Color(0xFF395144).withOpacity(.15),
                     ),
                     child: Icon(
                       Icons.close,
-                      color: Constants.primaryColor,
+                      color: Color(0xFF395144),
                     ),
                   ),
                 ),
@@ -62,7 +62,7 @@ class _DetailPageState extends State<DetailPage> {
                     width: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Constants.primaryColor.withOpacity(.15),
+                      color: Color(0xFF395144).withOpacity(.15),
                     ),
                     child: IconButton(
                         onPressed: () {
@@ -77,7 +77,7 @@ class _DetailPageState extends State<DetailPage> {
                           _plantList[widget.plantId].isFavorated == true
                               ? Icons.favorite
                               : Icons.favorite_border,
-                          color: Constants.primaryColor,
+                          color: Color(0xFF395144),
                         )),
                   ),
                 ),
@@ -127,7 +127,7 @@ class _DetailPageState extends State<DetailPage> {
     child: Container(
       padding: const EdgeInsets.only(top: 80, left: 30, right: 30, bottom: 30),
       decoration: BoxDecoration(
-        color: Constants.primaryColor.withOpacity(.4),
+        color: Color(0xFF395144).withOpacity(.4),
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(30),
           topLeft: Radius.circular(30),
@@ -146,7 +146,7 @@ class _DetailPageState extends State<DetailPage> {
                   Text(
                     _plantList[widget.plantId].plantName,
                     style: TextStyle(
-                      color: Constants.primaryColor,
+                      color: Color(0xFF395144),
                       fontWeight: FontWeight.bold,
                       fontSize: 30.0,
                     ),
@@ -177,7 +177,7 @@ class _DetailPageState extends State<DetailPage> {
                   Icon(
                     Icons.volunteer_activism_rounded,
                     size: 30.0,
-                    color: Constants.primaryColor,
+                    color: Color(0xFF395144),
                   ),
                 ],
               ),
@@ -223,16 +223,16 @@ class _DetailPageState extends State<DetailPage> {
               }, 
               icon: Icon(
                 Icons.recycling,
-                color: _plantList[widget.plantId].isSelected == true ? Colors.white : Constants.primaryColor,
+                color: _plantList[widget.plantId].isSelected == true ? Colors.white : Color(0xFF395144),
               )),
               decoration: BoxDecoration(
-                  color: _plantList[widget.plantId].isSelected == true ? Constants.primaryColor.withOpacity(.5) : Colors.white,
+                  color: _plantList[widget.plantId].isSelected == true ? Color(0xFF395144).withOpacity(.5) : Colors.white,
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: [
                     BoxShadow(
                       offset: const Offset(0, 1),
                       blurRadius: 5,
-                      color: Constants.primaryColor.withOpacity(.3),
+                      color: Color(0xFF395144).withOpacity(.3),
                     ),
                   ]),
             ),
@@ -251,13 +251,13 @@ class _DetailPageState extends State<DetailPage> {
                 },
               child: Container(
                 decoration: BoxDecoration(
-                    color: Constants.primaryColor,
+                    color: Color(0xFF395144),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
                         offset: const Offset(0, 1),
                         blurRadius: 5,
-                        color: Constants.primaryColor.withOpacity(.3),
+                        color: Color(0xFF395144).withOpacity(.3),
                       ),
                     ]),
                 child: const Center(
@@ -302,7 +302,7 @@ class PlantFeature extends StatelessWidget {
         Text(
           plantFeature,
           style: TextStyle(
-            color: Constants.primaryColor,
+            color: Color(0xFF395144),
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
           ),

@@ -41,7 +41,7 @@ class _PageSatuState extends State<PageSatu> {
             Text(
               title,
               style: TextStyle(
-                color: Colors.teal.shade700,
+                color: Color(0xFF395144),
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
@@ -123,7 +123,7 @@ class _PageSatuState extends State<PageSatu> {
                         effect: WormEffect(
                             spacing: 16,
                             dotColor: Colors.black26,
-                            activeDotColor: Colors.teal.shade700),
+                            activeDotColor: Color(0xFF395144)),
                         onDotClicked: (index) => controller.animateToPage(
                           index,
                           duration: const Duration(milliseconds: 500),

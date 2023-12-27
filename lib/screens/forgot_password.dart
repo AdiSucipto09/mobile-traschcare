@@ -47,7 +47,7 @@ class ForgotPassword extends StatelessWidget {
               child: Container(
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: Constants.primaryColor,
+                  color: Color(0xFF395144),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding:
@@ -87,7 +87,7 @@ class ForgotPassword extends StatelessWidget {
                     TextSpan(
                         text: "Login",
                         style: TextStyle(
-                          color: Constants.primaryColor,
+                          color: Color(0xFF395144),
                           fontWeight: FontWeight.bold
                         )),
                   ]),

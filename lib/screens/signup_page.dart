@@ -57,7 +57,7 @@ class SignUp extends StatelessWidget {
               child: Container(
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: Constants.primaryColor,
+                  color: const Color(0xFF395144),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding:
@@ -76,42 +76,6 @@ class SignUp extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            // Row(
-            //   children: const [
-            //     Expanded(child: Divider()),
-            //     Padding(
-            //       padding: EdgeInsets.symmetric(horizontal: 10),
-            //       child: Text('OR'),
-            //     ),
-            //     Expanded(child: Divider()),
-            //   ],
-            // ),
-            // const SizedBox(
-            //   height: 10,
-            // ),
-            // Container(
-            //   width: size.width,
-            //   decoration: BoxDecoration(
-            //       border: Border.all(color: Constants.primaryColor),
-            //       borderRadius: BorderRadius.circular(5)),
-            //   padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //     children: [
-            //       SizedBox(
-            //         height: 20,
-            //         child: Image.asset('images/google.png'),
-            //       ),
-            //       Text(
-            //         'Sign up with google',
-            //         style: TextStyle(
-            //           color: Constants.blackColor,
-            //           fontSize: 18.0,
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
             const SizedBox(
               height: 10,
             ),
@@ -136,7 +100,7 @@ class SignUp extends StatelessWidget {
                     TextSpan(
                         text: "Login",
                         style: TextStyle(
-                          color: Constants.primaryColor,
+                          color: Color(0xFF395144),
                           fontWeight: FontWeight.bold
                         )),
                   ]),

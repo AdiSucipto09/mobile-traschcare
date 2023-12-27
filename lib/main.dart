@@ -6,6 +6,8 @@ import 'package:trashcare/edit_status.dart';
 import 'package:trashcare/halaman_home.dart';
 import 'package:trashcare/rootpage.dart';
 import 'package:trashcare/splash.dart';
+import 'package:trashcare/theme.dart';
+import 'package:file_selector_windows/file_selector_windows.dart';
 
 
 void main(){

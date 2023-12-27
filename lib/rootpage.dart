@@ -69,12 +69,12 @@ class _RootPage extends State<RootPage> {
           Navigator.push(context, PageTransition(child: Camera(), type: PageTransitionType.bottomToTop));
         },
         child: Image.asset('images/camera.png', height: 30.0,),
-        backgroundColor: Constants.primaryColor,
+        backgroundColor:Color(0xFF395144),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: AnimatedBottomNavigationBar(
-          splashColor: Constants.primaryColor,
-          activeColor: Constants.primaryColor,
+          splashColor:Color(0xFF395144),
+          activeColor:Color(0xFF395144),
           inactiveColor: Colors.black.withOpacity(.5),
           icons: iconList,
           activeIndex: _bottomNavIndex,

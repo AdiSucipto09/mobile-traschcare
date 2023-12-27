@@ -34,7 +34,7 @@ class PlantWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal, // Menambahkan scroll horizontal
         child: Container(
           decoration: BoxDecoration(
-            color: Constants.primaryColor.withOpacity(.1),
+            color: Color(0xFF395144).withOpacity(.1),
             borderRadius: BorderRadius.circular(10),
           ),
           height: 80.0,
@@ -52,7 +52,7 @@ class PlantWidget extends StatelessWidget {
                     width: 60.0,
                     height: 60.0,
                     decoration: BoxDecoration(
-                      color: Constants.primaryColor.withOpacity(.8),
+                      color: Color(0xFF395144).withOpacity(.8),
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -92,7 +92,7 @@ class PlantWidget extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
-                    color: Constants.primaryColor,
+                    color: Color(0xFF395144),
                   ),
                 ),
               )
