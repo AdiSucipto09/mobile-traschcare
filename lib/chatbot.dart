@@ -13,6 +13,7 @@ class chatbot extends StatelessWidget {
 }
 }
 
+
 class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -21,53 +22,28 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _textController = TextEditingController();
   final List<ChatMessage> _messages = <ChatMessage>[];
-  List<Map<String, dynamic>> _botResponses = [];
 
   @override
-  void initState() {
-    super.initState();
-    // Load JSON data
-    loadBotResponses();
-  }
-
-  Future<void> loadBotResponses() async {
-    String data = await DefaultAssetBundle.of(context)
-        .loadString('assets/bot_responses.json');
-    setState(() {
-      _botResponses = json.decode(data);
-    });
-  }
-
-  Future<void> _handleSubmitted(String text) async {
-    _textController.clear();
-    ChatMessage message = ChatMessage(text: text, isBot: false);
-    setState(() {
-      _messages.insert(0, message);
-    });
-
-    // Make an HTTP request to the Flask server
-    try {
-      final response = await http.post(
-        Uri.parse('http://localhost:5000/api/chatbot'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'message': text}),
-      );
-
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        String botResponse = data['message'];
-        ChatMessage botMessage = ChatMessage(text: botResponse, isBot: true);
-        setState(() {
-          _messages.insert(0, botMessage);
-        });
-      } else {
-        // Handle error
-        print('Failed to get response from Flask API');
-      }
-    } catch (e) {
-      // Handle exception
-      print('Exception: $e');
-    }
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Flexible(
+            child: ListView.builder(
+              padding: EdgeInsets.all(8.0),
+              reverse: true,
+              itemBuilder: (_, int index) => _messages[index],
+              itemCount: _messages.length,
+            ),
+          ),
+          Divider(height: 1.0),
+          Container(
+            decoration: BoxDecoration(color: Theme.of(context).cardColor),
+            child: _buildTextComposer(),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildTextComposer() {
@@ -96,28 +72,36 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  Future<void> _handleSubmitted(String text) async {
+    _textController.clear();
+    ChatMessage message = ChatMessage(text: text, isBot: false);
+    setState(() {
+      _messages.insert(0, message);
+    });
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Flexible(
-            child: ListView.builder(
-              padding: EdgeInsets.all(8.0),
-              reverse: true,
-              itemBuilder: (_, int index) => _messages[index],
-              itemCount: _messages.length,
-            ),
-          ),
-          Divider(height: 1.0),
-          Container(
-            decoration: BoxDecoration(color: Theme.of(context).cardColor),
-            child: _buildTextComposer(),
-          ),
-        ],
-      ),
-    );
+    // Make an HTTP request to the Flask server
+    try {
+      final response = await http.post(
+        Uri.parse('http://127.0.0.1:5000/api/chatbot-mobile'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'message': text}),
+      );
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        String botResponse = data['message'];
+        ChatMessage botMessage = ChatMessage(text: botResponse, isBot: true);
+        setState(() {
+          _messages.insert(0, botMessage);
+        });
+      } else {
+        // Handle error
+        print('Failed to get response from Flask API');
+      }
+    } catch (e) {
+      // Handle exception
+      print('Exception: $e');
+    }
   }
 }
 
@@ -138,14 +122,14 @@ class ChatMessage extends StatelessWidget {
               ? Container(
                   margin: EdgeInsets.only(right: 16.0),
                   child: CircleAvatar(
-                    // Widget atau gambar yang ingin ditampilkan untuk chatbot
+                    // Widget or image to display for the chatbot
                     backgroundImage: AssetImage('images/logo.png'),
                   ),
                 )
               : Container(
                   margin: EdgeInsets.only(right: 16.0),
                   child: CircleAvatar(
-                    // Widget atau gambar yang ingin ditampilkan untuk pengguna
+                    // Widget or image to display for the user
                     backgroundImage: AssetImage('images/profil.png'),
                   ),
                 ),
@@ -158,7 +142,6 @@ class ChatMessage extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 5.0),
                   child: Text(text),
-
                 ),
               ],
             ),
