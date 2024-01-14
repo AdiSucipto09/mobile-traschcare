@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trashcare/camera.dart';
 import 'package:trashcare/constants.dart';
-import 'package:trashcare/datasampah.dart';
+import 'package:trashcare/sentimen.dart';
 import 'package:trashcare/chatbot.dart';
 import 'package:trashcare/edit_status.dart';
 import 'package:trashcare/halaman_home.dart';
@@ -9,6 +9,8 @@ import 'package:trashcare/profile_page.dart';
 import 'package:trashcare/splash.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:provider/provider.dart';
+
 
 class RootPage extends StatefulWidget {
     const RootPage({Key? key}) :super(key: key);
@@ -22,7 +24,7 @@ class _RootPage extends State<RootPage> {
   List<Widget> pages = const [
     HalamanPage(),
     chatbot(),
-    DataSampah(),
+    Sentimen(),
     ProfilePage(),
     EditStatus(),
    
@@ -53,7 +55,7 @@ class _RootPage extends State<RootPage> {
               fontWeight: FontWeight.w500,
               fontSize: 24
             ),),
-            Icon(Icons.table_rows_sharp, color: Constants.blackColor, size: 30.0,)
+            // Icon(Icons.table_rows_sharp, color: Constants.blackColor, size: 30.0,)
 
           ],
         ),

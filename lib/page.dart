@@ -84,9 +84,9 @@ class _PageSatuState extends State<PageSatu> {
               ),
               buildPage(
                 color: Colors.white,
-                urlImage: 'images/banksampah.png',
-                title: 'Bank Sampah',
-                subtitle: 'Mengubah sampah menjadi uang',
+                urlImage: 'images/deteksigmbr.png',
+                title: 'Deteksi',
+                subtitle: 'Mengcapture Gambar dengan memanfaatkan AI dan menghasilkan probability yang tepat',
               ),
             ],
           ),

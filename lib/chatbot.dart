@@ -82,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // Make an HTTP request to the Flask server
     try {
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:5000/api/chatbot-mobile'),
+        Uri.parse('https://6623-36-68-53-27.ngrok-free.app/api/chatbot-mobile'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'message': text}),
       );

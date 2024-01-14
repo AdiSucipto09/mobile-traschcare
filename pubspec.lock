@@ -73,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: "797e1e341c3dd2f69f2dad42564a6feff3bfb87187d05abb93b9609e6f1645c3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.0"
   fake_async:
     dependency: transitive
     description:
@@ -97,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
+  file_picker:
+    dependency: "direct main"
+    description:
+      name: file_picker
+      sha256: "4e42aacde3b993c5947467ab640882c56947d9d27342a5b6f2895b23956954a6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.1"
   file_selector_linux:
     dependency: transitive
     description:
@@ -169,7 +185,7 @@ packages:
     source: hosted
     version: "1.1.0"
   http_parser:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http_parser
       sha256: "2aa08ce0341cc9b354a498388e30986515406668dbcc4f7c950c3e715496693b"
@@ -288,6 +304,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   page_transition:
     dependency: "direct main"
     description:
@@ -368,6 +392,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.6"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      sha256: "9a96a0a19b594dbc5bf0f1f27d2bc67d5f95957359b461cd9feb44ed6ae75096"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -485,6 +517,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
+  theme_provider:
+    dependency: "direct main"
+    description:
+      name: theme_provider
+      sha256: "6a2839ee1bd539ceb789f25ea9696fe90f9dfad28e3228f209b8ff9255c58099"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.0"
   typed_data:
     dependency: transitive
     description:

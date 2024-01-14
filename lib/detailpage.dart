@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trashcare/constants.dart';
-import 'package:trashcare/datasampah.dart';
+import 'package:trashcare/sentimen.dart';
 import 'package:trashcare/plant.dart';
 
 class DetailPage extends StatefulWidget {
@@ -245,7 +245,7 @@ class _DetailPageState extends State<DetailPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DataSampah(), // Ganti dengan nama halaman DataSampah Anda
+                      builder: (context) => Sentimen(), // Ganti dengan nama halaman DataSampah Anda
                     ),
                   );
                 },
