@@ -40,7 +40,7 @@ class _RootPage extends State<RootPage> {
   List<String> titleList =[
     'Home',
     'ChatBot',
-    'Data',
+    'Analisis Sentimen',
     'Profile'
   ];
   @override

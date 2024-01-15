@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:trashcare/Page.dart';
 
+void main() {
+  runApp(const Splash());
+}
+
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
 
@@ -33,10 +37,10 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   _startAnimation() async {
     await Future.delayed(Duration(milliseconds: 1000));
     _animationController.forward();
-    _navigatetohome(); // Panggil navigasi setelah animasi selesai
+    _navigateToHome(); // Panggil navigasi setelah animasi selesai
   }
 
-  _navigatetohome() async {
+  _navigateToHome() async {
     await Future.delayed(Duration(milliseconds: 5000));
     Navigator.pushReplacement(
       context,
@@ -71,6 +75,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false, // Tambahkan ini untuk menyembunyikan label debug
     );
   }
 }

@@ -169,7 +169,7 @@ class _TestState extends State<Camera> {
     File imageFileUpload = File(_file!.path);
     String? fileName = _file?.path.split('/').last;
 
-    String uploadEndpoint = "https://6623-36-68-53-27.ngrok-free.app//uploadFileAndroid";
+    String uploadEndpoint = "https://711b-112-78-177-3.ngrok-free.app/uploadFileAndroid";
     Dio dio = Dio();
 
     FormData formData = FormData.fromMap({
@@ -211,7 +211,7 @@ class _TestState extends State<Camera> {
       return;
     }
 
-    String apiUrl = "https://6623-36-68-53-27.ngrok-free.app//receive_json";
+    String apiUrl = "https://711b-112-78-177-3.ngrok-free.app/receive_json";
     Dio dio = Dio();
 
     try {

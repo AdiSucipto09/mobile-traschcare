@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:provider/provider.dart';
-import 'package:trashcare/edit_profile.dart';
-import 'package:trashcare/signin_page.dart';
+import 'edit_profile.dart';
+import 'signin_page.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData _themeData;
@@ -27,6 +27,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String email = "nabillaaz012@gmail.com";
+  String nama = "Nabilla Auly Zahra";
+  String status = "Aktif";
   String? profileImagePath;
 
   @override
@@ -62,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 Text(
-                  "Nabilla Auly Zahra",
+                  nama,
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -70,14 +73,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "nabillaaz012@gmail.com",
+                  email,
                   style: TextStyle(
                     fontSize: 20,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "Aktif",
+                  status,
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -87,7 +90,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           SizedBox(height: 20),
-
           Container(
             child: Consumer<ThemeProvider>(
               builder: (context, themeProvider, child) {
@@ -95,17 +97,26 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     ListTile(
                       onTap: () async {
-                        String? newPath = await Navigator.push(
+                        // Menunggu hasil kembali dari halaman EditProfile
+                        final result = await Navigator.push(
                           context,
                           PageTransition(
-                            child: EditProfile(),
+                            child: EditProfile(
+                              initialEmail: email,
+                              initialNama: nama,
+                              initialStatus: status,
+                            ),
                             type: PageTransitionType.bottomToTop,
                           ),
                         );
 
-                        if (newPath != null && newPath.isNotEmpty) {
+                        // Memperbarui UI dengan hasil yang dikembalikan dari EditProfile
+                        if (result != null && result is Map<String, dynamic>) {
                           setState(() {
-                            profileImagePath = newPath;
+                            email = result['email'] ?? email;
+                            nama = result['nama'] ?? nama;
+                            status = result['status'] ?? status;
+                            profileImagePath = result['selectedImagePath'] ?? profileImagePath;
                           });
                         }
                       },
@@ -143,7 +154,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: SignIn(),
+                            child: LoginPage(),
                             type: PageTransitionType.bottomToTop,
                           ),
                         );

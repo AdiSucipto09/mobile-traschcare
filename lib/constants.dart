@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+const apiKey = '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';
 
 class Constants {
   //Primary color

@@ -1,12 +1,19 @@
-import 'dart:io'; // Pastikan import ini di atas import yang lain
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:trashcare/rootpage.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
+  final String? initialEmail;
+  final String? initialNama;
+  final String? initialStatus;
+
+  const EditProfile({
+    Key? key,
+    this.initialEmail,
+    this.initialNama,
+    this.initialStatus,
+  }) : super(key: key);
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -19,13 +26,21 @@ class _EditProfileState extends State<EditProfile> {
   String? selectedImagePath;
 
   @override
+  void initState() {
+    super.initState();
+    // Mengisi nilai awal dari widget parent jika tersedia
+    emailController.text = widget.initialEmail ?? "";
+    namaController.text = widget.initialNama ?? "";
+    statusController.text = widget.initialStatus ?? "";
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            // Kembali ke halaman sebelumnya (ProfilePage) dan kirim informasi perubahan
-            Navigator.pop(context, selectedImagePath);
+            Navigator.pop(context); // Kembali ke halaman sebelumnya tanpa mengupdate
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
@@ -40,7 +55,16 @@ class _EditProfileState extends State<EditProfile> {
         actions: [
           IconButton(
             onPressed: () {
-              // Tambahkan logika penyimpanan perubahan di sini
+              // Update informasi profil dan kembali ke halaman sebelumnya
+              Navigator.pop(
+                context,
+                {
+                  'email': emailController.text,
+                  'nama': namaController.text,
+                  'status': statusController.text,
+                  'selectedImagePath': selectedImagePath,
+                },
+              );
             },
             icon: Icon(Icons.save, color: Colors.white),
           ),
@@ -158,12 +182,15 @@ class _EditProfileState extends State<EditProfile> {
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    // Navigate back to the previous page without updating
+                    Navigator.pop(
                       context,
-                      PageTransition(
-                        child: RootPage(),
-                        type: PageTransitionType.bottomToTop,
-                      ),
+                      {
+                        'email': emailController.text,
+                        'nama': namaController.text,
+                        'status': statusController.text,
+                        'selectedImagePath': selectedImagePath,
+                      },
                     );
                   },
                   child: Text(

@@ -1,13 +1,52 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:trashcare/constants.dart';
-import 'package:trashcare/rootpage.dart';
-import 'package:trashcare/screens/forgot_password.dart';
-import 'package:trashcare/screens/signup_page.dart';
-import 'package:trashcare/screens/widgets/custom_textfield.dart';
+import 'package:http/http.dart' as http;
 
-class SignIn extends StatelessWidget {
-  const SignIn({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://df79-112-78-177-3.ngrok-free.app/api/login-mobile'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'username': emailController.text,
+          'password': passwordController.text,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // Successful login, handle accordingly
+        print('Login successful');
+        Navigator.pushReplacement(
+          context,
+          PageTransition(
+            child: const RootPage(),
+            type: PageTransitionType.bottomToTop,
+          ),
+        );
+      } else if (response.statusCode == 401) {
+        // Invalid email or password, show an error message
+        print('Invalid username or password');
+      } else {
+        // Other errors, handle accordingly
+        print('Error: ${response.body}');
+      }
+    } catch (error) {
+      // Handle network or other errors
+      print('Error: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +59,7 @@ class SignIn extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset('images/signin.png', height: 200, width: 200 ),
+            Image.asset('images/signin.png', height: 200, width: 200),
             const Text(
               'Sign In',
               style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
@@ -28,32 +67,32 @@ class SignIn extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            const CustomTextfield(
-              obscureText: false,
-              hintText: 'Enter Email',
-              icon: Icons.alternate_email,
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                hintText: 'Enter Email',
+                icon: Icon(Icons.alternate_email),
+              ),
             ),
-            const CustomTextfield(
+            TextField(
+              controller: passwordController,
               obscureText: true,
-              hintText: 'Enter Password',
-              icon: Icons.lock,
+              decoration: InputDecoration(
+                hintText: 'Enter Password',
+                icon: Icon(Icons.lock),
+              ),
             ),
             const SizedBox(
               height: 25,
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                      child: const RootPage(),
-                      type: PageTransitionType.bottomToTop),
-                );
+              onTap: () async {
+                await _login();
               },
               child: Container(
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: Color(0xFF395144),
+                  color: const Color(0xFF395144),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding:
@@ -72,107 +111,35 @@ class SignIn extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                      child: const ForgotPassword(),
-                      type: PageTransitionType.bottomToTop),
-                );
-              },
-              child: Center(
-                child: Text.rich(
-                  TextSpan(children: [
-                    TextSpan(
-                      text: "Forgot Password?",
-                      style: TextStyle(
-                        color: Constants.blackColor,
-                      ),
-                    ),
-                    TextSpan(
-                        text: "Reset Here",
-                        style: TextStyle(
-                          color: Color(0xFF395144),
-                          fontWeight: FontWeight.bold
-                        )),
-                  ]),
-                ),
-              ),
-            ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            // Row(
-            //   children: const [
-            //     Expanded(child: Divider()),
-            //     Padding(
-            //       padding: EdgeInsets.symmetric(horizontal: 10),
-            //       child: Text('OR'),
-            //     ),
-            //     Expanded(child: Divider()),
-            //   ],
-            // ),
             const SizedBox(
               height: 20,
-            ),
-            // Container(
-            //   width: size.width,
-            //   decoration: BoxDecoration(
-            //       border: Border.all(color: Constants.primaryColor),
-            //       borderRadius: BorderRadius.circular(5)),
-            //   padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //     children: [
-            //       SizedBox(
-            //         height: 20,
-            //         child: Image.asset('images/google.png'),
-            //       ),
-            //       Text(
-            //         'Sign in with google',
-            //         style: TextStyle(
-            //           color: Constants.blackColor,
-            //           fontSize: 18.0,
-            //         ),
-            //       )
-            //     ],
-              // ),
-            // ),
-            const SizedBox(
-              height: 10,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                      child: const SignUp(),
-                      type: PageTransitionType.bottomToTop),
-                );
-              },
-              child: Center(
-                child: Text.rich(
-                  TextSpan(children: [
-                    TextSpan(
-                      text: "Have an account?",
-                      style: TextStyle(
-                        color: Constants.blackColor,
-                      ),
-                    ),
-                    TextSpan(
-                        text: "Register",
-                        style: TextStyle(
-                          color: Color(0xFF395144),
-                          fontWeight: FontWeight.bold
-                        )),
-                  ]),
-                ),
-              ),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class RootPage extends StatelessWidget {
+  const RootPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Add your root page UI here
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Root Page'),
+      ),
+      body: Center(
+        child: Text('Welcome!'),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: LoginPage(),
+  ));
 }

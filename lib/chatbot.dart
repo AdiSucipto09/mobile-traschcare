@@ -2,17 +2,21 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+void main() {
+  runApp(const chatbot());
+}
+
 class chatbot extends StatelessWidget {
-  const chatbot({super.key});
+  const chatbot({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: ChatScreen(),
+      debugShowCheckedModeBanner: false, // Setel properti debugShowCheckedModeBanner menjadi false
     );
+  }
 }
-}
-
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -82,7 +86,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // Make an HTTP request to the Flask server
     try {
       final response = await http.post(
-        Uri.parse('https://6623-36-68-53-27.ngrok-free.app/api/chatbot-mobile'),
+        Uri.parse('https://711b-112-78-177-3.ngrok-free.app/api/chatbot-mobile'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'message': text}),
       );

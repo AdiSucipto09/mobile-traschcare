@@ -102,7 +102,7 @@ class _PageSatuState extends State<PageSatu> {
                   prefs.setBool('showHome', true);
 
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => SignIn()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
               )
